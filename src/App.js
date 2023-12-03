@@ -30,16 +30,19 @@ export default function App() {
     setData(updatedData);
   };
 
-  const handleBulkDelete = () => {
-    const updatedData = data.filter((rowData) => !selectedRows.includes(rowData.id));
-    setData(updatedData);
-    setSelectedRows([]); 
-  };
+    // multiple delete
+    const handleBulkDelete = () => {
+      console.log("----->", selectedRows)
+      const updatedData = data.filter((rowData) => !selectedRows.includes(rowData.id));
+      setData(updatedData);
+      setSelectedRows([]); 
+    };
 
-  const handleSelectionChange = (selection) => {
-    setSelectedRows(selection);
+  // select rows 
+  const handleSelectionChange = (data) => {
+    setSelectedRows([...selectedRows, data.id]);
   };
-
+//Search 
   const handleSearch = (searchText) => {
     const filteredData = data.filter((row) =>
       Object.values(row).some((value) =>
